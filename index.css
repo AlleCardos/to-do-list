@@ -75,9 +75,9 @@ p{
 }
 
 ul{
-    width: 1150px;
+    max-width: 1150px;
     border-top: rgb(184, 181, 181) solid 1px;
-    margin-top: 20px;
+    margin: 20px 10px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
 }
