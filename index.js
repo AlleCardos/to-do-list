@@ -76,7 +76,9 @@ function create_validation(){
 function create_item (value) {
 
     const li = document.createElement('li');
-    li.textContent = value;
+    const p = document.createElement('p')
+    p.textContent = value;
+    li.appendChild(p)
     
     const btn_delete = document.createElement('span')
     btn_delete.classList.add('btn-delete')

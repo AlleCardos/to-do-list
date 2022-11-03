@@ -57,7 +57,7 @@ body{
 
 li{
     list-style: none;
-    width: 350px;
+    min-width: 250px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -68,7 +68,14 @@ li{
     font-size: 16px;
 }
 
+p{
+    width: 90%;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
 ul{
+    width: 1150px;
     border-top: rgb(184, 181, 181) solid 1px;
     margin-top: 20px;
     display: grid;
@@ -95,6 +102,7 @@ ul{
     z-index: 999;
     gap: 15px 0px
 }
+
 .validation label{
     width: 300px;
     letter-spacing: 3px;
