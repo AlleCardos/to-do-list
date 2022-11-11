@@ -1,5 +1,5 @@
-const form = document.querySelector('.form');
-const ul = document.querySelector('.list');
+let form = document.querySelector('.form');
+let ul = document.querySelector('.list');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -9,21 +9,24 @@ form.addEventListener('submit', (e) => {
 
     if(value == '') return;
 
-    create_validation(value);
-    validation(value);
+    opMessage = 1;
+
+    create_validation(opMessage);
+    validationInsertItem(value);
 
     input.value = "";
 })
 
-ul.addEventListener('click', remove_item) 
-
-function remove_item (element) {
+ul.addEventListener('click', (element) => {
     if(element.target.classList.contains('btn-delete')){
-        element.target.parentElement.remove();
-    }
-}
 
-function validation (value) {
+        opMessage = 2;
+        create_validation(opMessage);
+        validationRemoveItem(element);
+    }
+})
+
+function validationInsertItem (value) {
 
     const btns = document.querySelectorAll('.btn-validation')
 
@@ -34,18 +37,48 @@ function validation (value) {
 
             const validation = btn.value;
 
-                if(validation == 'not'){
-                    btn.parentElement.remove(); 
-                    return;
-                }else{
-                    btn.parentElement.remove();
-                    create_item(value); 
-                }
+            if(validation == 'yes'){
+                btn.parentElement.remove();
+                create_item(value);
+                return;
+            }
+
+            btn.parentElement.remove(); 
+
         })
     })
 }
 
-function create_validation(){
+function validationRemoveItem (element) {
+
+    const btns = document.querySelectorAll('.btn-validation')
+
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+
+            e.preventDefault();
+
+            const validation = btn.value;
+
+            if(validation == 'yes'){
+                btn.parentElement.remove(); 
+                element.target.parentElement.remove();
+                return;
+            }
+
+            btn.parentElement.remove(); 
+
+        })
+    })
+}
+
+function create_validation(opMessage){
+
+    let message;
+
+    if(opMessage == 1) message = 'Deseja adicionar esse item na lista?';
+    
+    message = 'Deseja remover esse item da lista'
 
     const body = document.querySelector('body')
 
@@ -56,7 +89,7 @@ function create_validation(){
 
     div.classList.add('validation');
 
-    label.textContent = 'Deseja adicionar esse item na lista?'
+    label.textContent = message;
 
     btn_yes.textContent = 'Sim';
     btn_yes.classList.add('btn-validation');
