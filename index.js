@@ -76,9 +76,11 @@ function create_validation(opMessage){
 
     let message;
 
-    if(opMessage == 1) message = 'Deseja adicionar esse item na lista?';
-    
-    message = 'Deseja remover esse item da lista'
+    if(opMessage == 1){
+        message = 'Deseja adicionar esse item na lista?';
+    }{
+        message = 'Deseja remover esse item da lista'
+    }
 
     const body = document.querySelector('body')
 
